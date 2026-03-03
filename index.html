@@ -4,18 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>P&P Soluciones - Catálogo</title>
-    <meta name="description" content="Catálogo digital de P&P Soluciones. Papelería, tecnología y más.">
     
     <link rel="icon" type="image/png" href="https://pypsoluciones.github.io/favicon.png"> 
 
     <style>
-        /* Hacemos que el iframe ocupe toda la pantalla y quitamos los bordes */
         body, html { 
             margin: 0; 
             padding: 0; 
             height: 100%; 
             width: 100%; 
-            overflow: hidden; /* Evita doble barra de scroll */
+            overflow: hidden; 
             background-color: #1B2631;
         }
         iframe { 
@@ -28,19 +26,16 @@
 </head>
 <body>
     <script>
-        // --- CONFIGURACIÓN ---
-        // Asegúrate de que esta URL sea la de tu última implementación /exec
-        var scriptUrl = "https://script.google.com/macros/s/AKfycbzvwAvykGjOTyU34dWiYeMaJQx-W8M3YQp5hj0xE5LrO8eQKzis_pNlfqm5Mb16G2C1Rg/exec"; 
-        // ---------------------
+        // --- PEGA AQUÍ TU URL NUEVA DE GOOGLE SCRIPT ---
+        var scriptUrl = "https://script.google.com/macros/s/AKfycbzwBUjkc9YGp_WD0zEarM3tyxrEVkqjuhUEPplQ9uLFCXSQmyHXcCwuBQW5BwBbJ0ODKQ/exec"; 
+        // -----------------------------------------------
 
-        // Captura los parámetros de la URL de GitHub (ej: ?c=Copiado)
         var queryString = window.location.search;
-
-        // Crea el iframe dinámicamente
         var iframe = document.createElement('iframe');
-        iframe.src = scriptUrl + queryString; // Une la URL del script con los parámetros
         
-        // CORRECCIÓN APLICADA: Se agregaron permisos para el portapapeles
+        iframe.src = scriptUrl + queryString; 
+        
+        // ESTA LÍNEA ES LA QUE ARREGLA EL BOTÓN COPIAR
         iframe.setAttribute('allow', 'geolocation; microphone; camera; clipboard-write; clipboard-read'); 
         
         document.body.appendChild(iframe);
