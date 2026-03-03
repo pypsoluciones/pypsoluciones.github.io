@@ -1,48 +1,44 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>P&P Soluciones</title>
+  <meta charset="utf-8">
+  <title>P&P Soluciones - Catálogo</title>
+  <style>
+    body { 
+      background-color: #1B2631; 
+      color: white; 
+      font-family: sans-serif; 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      justify-content: center; 
+      height: 100vh; 
+      margin: 0; 
+    }
+    .loader {
+      border: 5px solid #f3f3f3;
+      border-top: 5px solid #3498db;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  </style>
+  <script>
+    // URL DE TU SCRIPT DE GOOGLE (Extraída de tu captura)
+    var scriptUrl = "https://script.google.com/macros/s/AKfycbzQpOyrpPXmVuuppSN5J12IXwDngQIPwMFAHKPCSAxUpAuL5jCOlq_TshAtlc9r4B9w-Q/exec";
     
-    <meta name="description" content="Catálogo digital de P&P Soluciones. Papelería, Centro de copiado e Impresion, Servicio Tecnico en Computacion, Servicio Tecnico en Aire Acondicionado y suministros para oficinas en Juan Pablo II, Montalbán, Caracas. Haz tu pedido en línea aquí.">
-    <meta name="keywords" content="P&P Soluciones, Papelería Caracas, Montalbán, uan Pablo II, Útiles escolares, Computacion, Aire Acondicionado, Plastificacion, Encuadernacion, Fotocopiado, Impresion, Digitalizacion, Material de oficina, Cargador para celular, Ventas Caracas">
-    <meta name="author" content="Lesme Pesquera - P&P Soluciones">
+    // Captura los parámetros de la URL de GitHub (ej: ?c=Copiado)
+    var params = window.location.search; 
     
-    <link rel="manifest" href="manifest.json">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="P&P Soluciones">
-    <meta name="theme-color" content="#1B2631">
-    
-    <link rel="icon" type="image/png" href="https://i.ibb.co/tpY3X6yY/Favicon-P-P-Soluciones.png">
-    <link rel="apple-touch-icon" href="https://i.ibb.co/tpY3X6yY/Favicon-P-P-Soluciones.png">
-    
-    <style>
-        body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background-color: #ffffff; font-family: Arial, sans-serif; }
-        .main-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-        iframe { width: 100%; height: 100%; border: none; display: block; }
-    </style>
+    // Redirige al script de Google pegándole esos parámetros
+    window.location.replace(scriptUrl + params);
+  </script>
 </head>
 <body>
-
-    <div class="main-container">
-        <iframe id="miIframe" allowfullscreen="true" allow="geolocation; microphone; camera; clipboard-read; clipboard-write; web-share"></iframe>
-    </div>
-
-    <script>
-        var scriptUrl = "https://script.google.com/macros/s/AKfycbxHDtt3vuqchkyN-dh_qgonTtRCfvdE5A8p4Y7LIpKY7biZjRma4-Fo3Z_cIQ0UvNDwnA/exec";
-        var parametros = window.location.search;
-        document.getElementById("miIframe").src = scriptUrl + parametros;
-
-        // ACTIVADOR DE LA APP NATIVA
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('sw.js');
-            });
-        }
-    </script>
-
+  <div class="loader"></div>
+  <p>Cargando Catálogo...</p>
 </body>
 </html>
