@@ -3,52 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Diagnóstico P&P</title>
+    <title>P&P Soluciones</title>
+    <link rel="icon" type="image/png" href="https://pypsoluciones.github.io/favicon.png"> 
     <style>
-        body { font-family: sans-serif; background: #1B2631; color: white; text-align: center; padding: 20px; }
-        .box { background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; margin-bottom: 20px; word-break: break-all; }
-        button { padding: 15px 30px; font-size: 18px; background: #25D366; color: white; border: none; border-radius: 50px; cursor: pointer; font-weight: bold; }
-        iframe { width: 100%; height: 80vh; border: 1px solid #555; background: white; }
+        body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background-color: #1B2631; }
+        iframe { width: 100%; height: 100%; border: none; display: block; }
     </style>
 </head>
 <body>
-
-    <h3>🛠️ Modo Diagnóstico P&P</h3>
-    
-    <div class="box">
-        <p><strong>URL Generada:</strong></p>
-        <div id="url-text" style="color: #00ccff; font-family: monospace;">...</div>
-    </div>
-
-    <div style="margin-bottom: 30px;">
-        <p>1. Prueba abrirlo directamente:</p>
-        <button onclick="abrirDirecto()">ABRIR EN PESTAÑA NUEVA</button>
-    </div>
-
-    <p>2. Vista previa en Iframe (Si aquí falla y en el botón funciona, es un tema de cookies):</p>
-    <div id="iframe-container"></div>
-
     <script>
-        // --- TU URL DE SCRIPT ---
+        // PEGA AQUÍ TU URL DE IMPLEMENTACIÓN DE APPS SCRIPT (La que termina en /exec)
         var scriptUrl = "https://script.google.com/macros/s/AKfycbxMYtoFW13UXgzaNcQUN_5caQ01vO5P52eO_To-edjFgA_LR_7FOAgjaUEMm7V46HTeSw/exec"; 
-        // ------------------------
 
+        // Capturar parámetros de la URL (ej: ?c=Copiado)
         var queryString = window.location.search;
-        // Agregamos un timestamp para evitar que Google use una versión cacheada vieja
-        var finalUrl = scriptUrl + queryString + (queryString ? "&" : "?") + "v=" + new Date().getTime();
-
-        document.getElementById('url-text').innerText = finalUrl;
-
-        function abrirDirecto() {
-            window.open(finalUrl, '_blank');
-        }
-
-        // Cargar Iframe automáticamente
+        
+        // Crear el iframe
         var iframe = document.createElement('iframe');
-        iframe.src = finalUrl;
-        iframe.setAttribute('allow', 'geolocation; microphone; camera; clipboard-write; clipboard-read');
-        document.getElementById('iframe-container').appendChild(iframe);
+        // Unir la URL del script con los parámetros
+        iframe.src = scriptUrl + queryString;
+        
+        // Permisos necesarios para que funcione todo dentro del iframe
+        iframe.setAttribute('allow', 'geolocation; microphone; camera; clipboard-write; clipboard-read; payment');
+        
+        document.body.appendChild(iframe);
     </script>
-
 </body>
 </html>
