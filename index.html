@@ -3,29 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>P&P Soluciones</title>
-    <link rel="icon" type="image/png" href="https://pypsoluciones.github.io/favicon.png"> 
+    <meta name="robots" content="index, follow">
+    <meta name="description" content="Catálogo Digital P&P Soluciones">
+    <title>P&P Soluciones | Catálogo</title>
+    
+    <link rel="icon" type="image/png" href="https://pypsoluciones.github.io/Favicon%20Centrado%20P&P%20Soluciones.png"> 
+
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background-color: #1B2631; }
-        iframe { width: 100%; height: 100%; border: none; display: block; }
+        body, html { 
+            margin: 0; 
+            padding: 0; 
+            height: 100%; 
+            width: 100%; 
+            overflow: hidden; 
+            background-color: #1B2631; /* Color de fondo mientras carga */
+        }
+        iframe { 
+            width: 100%; 
+            height: 100%; 
+            border: none; 
+            display: block; 
+        }
+        /* Loader simple mientras conecta con Google */
+        #loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-family: sans-serif;
+            font-size: 1.2rem;
+            pointer-events: none;
+            transition: opacity 0.5s;
+        }
     </style>
 </head>
 <body>
-    <script>
-        // PEGA AQUÍ TU URL DE IMPLEMENTACIÓN DE APPS SCRIPT (La que termina en /exec)
-        var scriptUrl = "https://script.google.com/macros/s/AKfycbxMYtoFW13UXgzaNcQUN_5caQ01vO5P52eO_To-edjFgA_LR_7FOAgjaUEMm7V46HTeSw/exec"; 
 
-        // Capturar parámetros de la URL (ej: ?c=Copiado)
+    <div id="loading">Cargando Catálogo...</div>
+
+    <script>
+        // =========================================================================
+        // PEGA AQUÍ LA URL DE TU "WEB APP" DE GOOGLE (La que termina en /exec)
+        // Asegúrate de haber hecho "Nueva Implementación" después de editar el Código.gs
+        var scriptUrl = "https://script.google.com/macros/s/AKfycbxMYtoFW13UXgzaNcQUN_5caQ01vO5P52eO_To-edjFgA_LR_7FOAgjaUEMm7V46HTeSw/exec"; 
+        // =========================================================================
+
+        // Capturar los parámetros de la URL de GitHub (ej: ?c=Copiado)
         var queryString = window.location.search;
         
-        // Crear el iframe
+        // Crear el iframe dinámicamente
         var iframe = document.createElement('iframe');
-        // Unir la URL del script con los parámetros
-        iframe.src = scriptUrl + queryString;
         
-        // Permisos necesarios para que funcione todo dentro del iframe
-        iframe.setAttribute('allow', 'geolocation; microphone; camera; clipboard-write; clipboard-read; payment');
+        // Construimos la URL. 
+        // TRUCO: Si ya hay interrogación, usamos '&', si no '?'.
+        // Agregamos un parámetro dummy 'app_v=2' para forzar a Google a no usar caché vieja.
+        var separator = queryString ? "&" : "?";
+        iframe.src = scriptUrl + queryString + separator + "app_v=2"; 
         
+        // Permisos completos para que funcione todo (Cámara, copiar al portapapeles, etc.)
+        iframe.setAttribute('allow', 'geolocation; microphone; camera; clipboard-write; clipboard-read; payment; autoplay');
+        iframe.setAttribute('sandbox', 'allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation');
+        
+        // Cuando el iframe carga, ocultamos el texto de cargando
+        iframe.onload = function() {
+            document.getElementById('loading').style.opacity = '0';
+        };
+
         document.body.appendChild(iframe);
     </script>
 </body>
