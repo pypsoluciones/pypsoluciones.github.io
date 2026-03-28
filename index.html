@@ -48,6 +48,12 @@
         @keyframes girar { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         .texto-carga { color: #333; font-size: 16px; font-weight: bold; letter-spacing: 1px;}
 
+        /* DISEÑO DEL TEXTO DE DEVOLUCIONES (Para cumplir con Google Merchant) */
+        .texto-devoluciones {
+            position: absolute; bottom: 30px; font-size: 12px; color: #6c757d; 
+            text-align: center; padding: 0 20px; max-width: 400px; line-height: 1.4;
+        }
+
         /* DISEÑO DEL CARTEL DE INSTALACIÓN */
         #cartel-instalacion {
             position: fixed; bottom: 0; left: 0; width: 100%; background-color: #ffffff;
@@ -67,6 +73,10 @@
     <div id="pantalla-carga">
         <div class="spinner"></div>
         <div class="texto-carga">Cargando Catálogo...</div>
+        
+        <div class="texto-devoluciones">
+            <b>Política de Devoluciones:</b> Ofrecemos 7 días continuos para realizar devoluciones o cambios de productos físicos en nuestra tienda.
+        </div>
     </div>
 
     <iframe id="app-frame"></iframe>
